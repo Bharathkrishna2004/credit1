@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KFC - Finger Lickin' Good</title>
+    <style>
+        /* Custom CSS styles for KFC website */
+        body {
+            background-color: #fffc00; /* KFC's signature yellow background */
+            font-family: Arial, sans-serif;
+        }
+        #app {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Conditional Rendering -->
+        <h1 v-if="showHeading">Welcome to KFC - Finger Lickin' Good</h1>
+        <p v-else>Heading is hidden.</p>
+
+        <button @click="toggleHeading">Toggle Heading</button>
+
+        <!-- v-show -->
+        <p v-show="showParagraph">Discover our secret recipe with 11 herbs and spices.</p>
+
+        <!-- v-for: Popular Items -->
+        <h2>Popular Menu Items</h2>
+        <ul>
+            <li v-for="item in kfcMenu" :key="item.id">{{ item.name }}</li>
+        </ul>
+
+        <!-- Form Input Handling with v-model -->
+        <h2>Contact Us</h2>
+        <label for="message">Enter your feedback:</label>
+        <textarea id="message" v-model="userFeedback"></textarea>
+        <p>Your feedback: {{ userFeedback }}</p>
+
+        <!-- Add KFC logo -->
+        <img src="kfc-logo.png" alt="KFC Logo">
+    </div>
+
+    <!-- Vue 3 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.29/dist/vue.global.min.js"></script>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    showHeading: true,
+                    showParagraph: true,
+                    kfcMenu: [
+                        { id: 1, name: 'Original Recipe Chicken' },
+                        { id: 2, name: 'Chicken Wings' },
+                        { id: 3, name: 'Famous Bowl' },
+                        { id: 4, name: 'Zinger Burger' },
+                        { id: 5, name: 'Mashed Potatoes' },
+                    ],
+                    userFeedback: '',
+                };
+            },
+            methods: {
+                toggleHeading() {
+                    this.showHeading = !this.showHeading;
+                },
+            },
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+
+</html>
